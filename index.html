@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Akku 💖</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ffe6f2, #ffd6eb);
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+h1 {
+  color: #ff4d88;
+  font-size: 26px;
+  padding: 10px;
+}
+
+.name {
+  font-size: 28px;
+  color: #ff3385;
+  animation: beat 1s infinite;
+  margin-bottom: 5px;
+}
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+img {
+  width: 200px;
+  max-width: 80%;
+  margin: 10px 0;
+}
+
+.buttons {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background-color: #ff66a3;
+  color: white;
+}
+
+#yesBtn:active {
+  transform: scale(0.95);
+}
+
+#noBtn {
+  background-color: #cccccc;
+  position: absolute;
+  left: 55%;
+  top: 20px;
+}
+
+#doodle {
+  font-size: 20px;
+  margin-top: 15px;
+  min-height: 40px;
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="name">Akku 💓</div>
+<h1>Will You Be My Valentine? 💘</h1>
+
+<img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Cute Teddy">
+
+<div class="buttons">
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 😢</button>
+</div>
+
+<div id="doodle">(•́‿•̀) Please say yes?</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const doodle = document.getElementById("doodle");
+
+let yesSize = 1;
+
+const doodles = [
+  "🥺 Why you clicking this?",
+  "😭 Don’t do this to me!",
+  "💔 I’ll cryyy...",
+  "🥹 Please reconsider?",
+  "🧸 Teddy is sad now..."
+];
+
+noBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  doodle.innerText = doodles[Math.floor(Math.random() * doodles.length)];
+
+  yesSize += 0.2;
+  yesBtn.style.transform = "scale(" + yesSize + ")";
+});
+
+yesBtn.addEventListener("click", function() {
+  document.body.innerHTML = `
+    <h1>Akku 💓 You Said YES! 😍</h1>
+    
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="220">
+    
+    <p style="font-size:22px; padding:20px; color:#ff3385;">
+      I will always cook for you, my special one 💕<br><br>
+      And make sure your mood remains perfect every single day 🧑‍🍳✨
+    </p>
+  `;
+  createHearts();
+});
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
